@@ -1,6 +1,8 @@
 import { el, element, formatDate } from './lib/utils';
-// importa öðru sem þarf...
+import { fetchEarthquakes } from './lib/earthquakes';
+//importa öðru sem þarf
 
 document.addEventListener('DOMContentLoaded', async () => {
+  console.log('DOMContentLoaded')
   fetchEarthquakes();
 });

@@ -17,10 +17,14 @@ module.exports = {
       exclude: 'node_modules/**',
       sourceMaps: true,
       presets: [['@babel/preset-env',
-        { targets: '> 0.25%, not dead' }]],
+        {
+          useBuiltIns: 'usage',
+          corejs: 2,
+          targets: '> 0.25%, not dead'
+        }]],
     }),
     resolve(),
     commonjs(),
-    terser(),
+    //terser(),
   ],
 };
