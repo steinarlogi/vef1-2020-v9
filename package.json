@@ -1,0 +1,43 @@
+{
+  "name": "vef1-2020-v9",
+  "version": "1.0.0",
+  "description": "Verkefni 9 sækir gögn um jarðskjálfta frá USGS og birtir á korti með [Leaflet](https://leafletjs.com/).",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint src/lib/*.js src/*.js",
+    "babel": "babel src --out-dir dist",
+    "rollup-watch": "rollup -c -w",
+    "babel-watch": "babel src --out-dir dist --watch",
+    "browser-sync": "browser-sync start --server --files index.html dist/*.js dist/*/**.js",
+    "dev": "concurrently npm:browser-sync npm:babel-watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/steinarlogi/vef1-2020-v9.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/steinarlogi/vef1-2020-v9/issues"
+  },
+  "homepage": "https://github.com/steinarlogi/vef1-2020-v9#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "browsersync": "0.0.1-security",
+    "concurrently": "^5.3.0",
+    "eslint": "^7.13.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "rollup": "^2.33.1",
+    "rollup-plugin-babel": "^4.4.0"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "leaflet": "^1.7.1"
+  }
+}
