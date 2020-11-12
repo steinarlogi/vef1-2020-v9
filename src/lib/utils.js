@@ -51,6 +51,51 @@ export function element(name, attributes = null, events = null,...children) {
 }
 
 /**
+* @param {string} title Title of eartquake
+* @param {int} time time of earthquake
+* @param {double} strength strength of earthquake
+* @param {string} url to information page about the earthquake
+*/
+export function listElement(title, time, strength, url, popup) {
+  let dl = element(
+    'dl',
+    null,
+    null,
+    el('dt', 'Tími'),
+    el('dd', formatDate(time)),
+    el('dt', 'Styrkur'),
+    el('dd', (strength + ' á richter')),
+  );
+
+  let button = element(
+    'div',
+    {'class' : 'buttons'},
+    null,
+    element(
+      'button',
+      null,
+      {'click': function() {
+        popup.openPopup();}
+      },
+      'Sjá á korti'
+    ),
+    element('a', {'href': url, 'target': '_blank'}, null, 'Skoða nánar')
+  );
+
+  let div = element(
+    'div',
+    null,
+    null,
+    el('h2', title),
+    dl,
+    button,
+  );
+
+
+  return element('li', null, null, div);
+}
+
+/**
  * Simplified element function.
  * Creates an element and append elements or strings to it.
  *
@@ -69,5 +114,5 @@ export function el(name, ...children) {
  * @returns {string} Formatted string.
  */
 export function formatDate(timestamp) {
-  // TODO Útfæra með „vanilla JS“ eða nota date-fns pakka
+  return format(new Date(timestamp), 'dd:MM:y HH:mm:ss');
 }

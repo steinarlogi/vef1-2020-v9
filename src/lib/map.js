@@ -3,13 +3,21 @@ import L from 'leaflet';
 let map;
 
 // Býr til popup á korti út frá geojson með content
-export function createPopup(geojson, content) {
-  // TODO
+export function createPopup(obj, content) {
+  return L.geoJSON(obj, {
+      style: function (feature) {
+          return {};
+      }
+  }).bindPopup(content);
 }
 
 // Býr til Leaflet kort og setur miðju á (0, 0) í zoom level 2
 export function init(el) {
   // TODO
+  map = L.map(document.querySelector('.map'), {
+    center: [64.140436, -21.94937],
+    zoom: 13
+  });
 
   // Bætum við "tiles" frá OSM sem eru open source. Gætum líka
   // notað frá Google, mapbox eða fleirum en þyrftum þá aðgang
@@ -17,4 +25,8 @@ export function init(el) {
     maxZoom: 19,
     attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap contributors</a>'
   }).addTo(map);
+}
+
+export function addToMap(popup) {
+  popup.addTo(map);
 }
