@@ -10,20 +10,11 @@
  */
 
 const URL = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson';
-// const URL = './4.5_week.geojson';
 
-export async function fetchEarthquakes() {
-  // TODO Sækja gögn frá URL, setja upp villumeðhöndlun og skila
-
-  let d = fetch(URL).then((result) => {
-
-    if(result.ok) {return result.json();}
-
-    else {throw new Error('Non 200 status');}
-
-  }).then((data) => {
-    return data;
-  }).catch(error => console.log(error));
-
-  return d;
+export default async function fetchEarthquakes() {
+  return fetch(URL).then((result) => {
+    if (result.ok) { return result.json(); }
+    return null;
+  }).then((data) => data)
+    .catch((error) => error);
 }

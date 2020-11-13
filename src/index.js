@@ -1,42 +1,35 @@
 import { listElement, formatDate } from './lib/utils';
-import { fetchEarthquakes } from './lib/earthquakes';
-import { createPopup, init, addToMap } from './lib/map'
-//importa öðru sem þarf
+import fetchEarthquakes from './lib/earthquakes';
+import { createPopup, init, addToMap } from './lib/map';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  init('bla');
+  init();
 
   fetchEarthquakes().then((data) => {
+    const earthquakeData = data.features;
 
-
-    //hér fjarlægi ég loading divið.
-    //og geri það sem þarf
-    //bý til lista element og bæti við ul
-
-    let earthquakeData = data.features;
-
-    for(let i = 0; i < earthquakeData.length; i++) {
-
-      let popup = createPopup(
+    document.querySelector('.loading').remove();
+    for (let i = 0; i < earthquakeData.length; i += 1) {
+      const popup = createPopup(
         earthquakeData[i],
         document.createElement('div').innerHtml = (
-          '<p>' +
-          earthquakeData[i].properties.place +
-          '</p>' +
-          '<p>' +
-          formatDate(earthquakeData[i].properties.time) +
-          '</p>' +
-          '<p>' +
-          earthquakeData[i].properties.mag + ' á richter' +
-          '</p>')
-        );
+          `<p>
+          ${earthquakeData[i].properties.place}
+          </p>
+          <p>
+          ${formatDate(earthquakeData[i].properties.time)}
+          </p>
+          <p>
+          ${earthquakeData[i].properties.mag} á richter
+          </p>`),
+      );
 
-      let element = listElement(
+      const element = listElement(
         earthquakeData[i].properties.place,
         earthquakeData[i].properties.time,
         earthquakeData[i].properties.mag,
         earthquakeData[i].properties.url,
-        popup
+        popup,
       );
 
       document.querySelector('.earthquakes').appendChild(element);
